@@ -13,7 +13,6 @@ function change_to_midtier() {
 
 function deploy_oracle_client() {
   Write-Host "[${computername}][Task] Run Puppet to Deploy Oracle Client"
-  Stop-Service Psft* -WarningAction SilentlyContinue
   Set-Location $puppet_home\production\manifests
   puppet apply -e "include pt_profile::pt_tools_deployment" --confdir=$puppet_home  2>&1 | out-null
   $oracle_client_location = $(hiera oracle_client_location -c $puppet_home\hiera.yaml)
