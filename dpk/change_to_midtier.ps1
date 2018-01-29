@@ -14,7 +14,7 @@ function deploy_oracle_client() {
   Write-Host "[${computername}][Task] Run Puppet to Deploy Oracle Client"
   Stop-Service Psft* -WarningAction SilentlyContinue
   Set-Location $PUPPET_HOME\production\manifests
-  puppet apply .\site.pp --confdir=$PUPPET_HOME  2>&1 | out-null
+  puppet apply -e "include pt_profile::pt_tools_deployment" --confdir=$PUPPET_HOME  2>&1 | out-null
   $oracle_client_location = $(hiera oracle_client_location -c $PUPPET_HOME\hiera.yaml)
   if (Test-Path $oracle_client_location) {
     Write-Host "[${computername}][Done] Run Puppet to Deploy Oracle Client" -ForegroundColor Green
