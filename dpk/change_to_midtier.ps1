@@ -1,5 +1,6 @@
 $computername = $env:computername
 $PUPPET_HOME="c:\psft\dpk\puppet"
+$START_LOCATION=$(Get-Location)
 
 function change_to_midtier() {
   Write-Host "[${computername}][Task] Change env_type to 'midtier'"
@@ -11,7 +12,7 @@ function change_to_midtier() {
 
 function deploy_oracle_client() {
   Write-Host "[${computername}][Task] Run Puppet to Deploy Oracle Client"
-  Stop-Service Psft*  2>&1 | out-null
+  Stop-Service Psft* -WarningAction SilentlyContinue
   Set-Location $PUPPET_HOME\production\manifests
   puppet apply .\site.pp --confdir=$PUPPET_HOME  2>&1 | out-null
   $oracle_client_location = $(hiera oracle_client_location -c $PUPPET_HOME\hiera.yaml)
@@ -25,3 +26,5 @@ function deploy_oracle_client() {
 
 . change_to_midtier
 . deploy_oracle_client
+
+Set-Location $START_LOCATION
