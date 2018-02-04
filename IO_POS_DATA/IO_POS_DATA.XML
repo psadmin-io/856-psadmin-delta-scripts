@@ -8,7 +8,7 @@
         <szObjectOwnerID></szObjectOwnerID>
         <nUseCount>1</nUseCount>
         <bUseUpdate>1</bUseUpdate>
-        <lVersion>87</lVersion>
+        <lVersion>43</lVersion>
         <lSwapVersion>0</lSwapVersion>
         <nSwapNum>0</nSwapNum>
         <szProjectName>IO_POS_DATA</szProjectName>
@@ -16,8 +16,8 @@
         <szProjectDescr></szProjectDescr>
         <szSrcDBName>HCMLNX</szSrcDBName>
         <szSrcOprId>PS</szSrcOprId>
-        <szSessionId>904ffb2b-037c-11e8-9149-d7f635923458</szSessionId>
-        <szRunDtTm>2018-01-27-16.10.16.596812</szRunDtTm>
+        <szSessionId>5257fe98-0952-11e8-80d7-c9fabf26b986</szSessionId>
+        <szRunDtTm>2018-02-04-02.23.00.178482</szRunDtTm>
         <szTgtServerName></szTgtServerName>
         <szTgtDBName></szTgtDBName>
         <szTgtOprId></szTgtOprId>
@@ -52,7 +52,7 @@
               <eTargetStatus>0</eTargetStatus>
               <eUpgradeAction>0</eUpgradeAction>
               <bTakeAction>1</bTakeAction>
-              <bCopyDone>0</bCopyDone>
+              <bCopyDone>1</bCopyDone>
               <eRowStatus>3</eRowStatus>
             </row>
             <row>
@@ -106,7 +106,7 @@
               <eTargetStatus>0</eTargetStatus>
               <eUpgradeAction>0</eUpgradeAction>
               <bTakeAction>1</bTakeAction>
-              <bCopyDone>0</bCopyDone>
+              <bCopyDone>1</bCopyDone>
               <eRowStatus>3</eRowStatus>
             </row>
             <row>
@@ -430,13 +430,13 @@
   <instance class="RDM">
     <rowset name="RecDefn" size="920" count="1">
       <row>
-        <szLastUpdDttm>2018-01-27-16.08.35.597084</szLastUpdDttm>
+        <szLastUpdDttm>2018-02-04-02.18.34.178273</szLastUpdDttm>
         <szLastUpdOprId>PS</szLastUpdOprId>
         <szObjectOwnerID></szObjectOwnerID>
         <nUseCount>1</nUseCount>
         <bUseUpdate>1</bUseUpdate>
-        <lVersion>19</lVersion>
-        <lSwapVersion>19</lSwapVersion>
+        <lVersion>6</lVersion>
+        <lSwapVersion>6</lSwapVersion>
         <nSwapNum>0</nSwapNum>
         <szRecName>IO_POS_DESCR_VW</szRecName>
         <szLanguageCd>ENG</szLanguageCd>
@@ -6360,8 +6360,8 @@ COUNTRY_CODE is used for the numeric Country Code Number in PeopleSoft Financial
         <szObjectOwnerID>HFG</szObjectOwnerID>
         <nUseCount>1</nUseCount>
         <bUseUpdate>0</bUseUpdate>
-        <lVersion>16</lVersion>
-        <lSwapVersion>16</lSwapVersion>
+        <lVersion>1</lVersion>
+        <lSwapVersion>1</lSwapVersion>
         <nSwapNum>0</nSwapNum>
         <szRecName>POS_DTA_FED_SBR</szRecName>
         <szLanguageCd>ENG</szLanguageCd>
@@ -9354,9 +9354,9 @@ COUNTRY_CODE is used for the numeric Country Code Number in PeopleSoft Financial
               <fStatus>0</fStatus>
               <atmFieldName>GVT_CYBER_SEC_CD</atmFieldName>
               <eFieldType>0</eFieldType>
-              <nLength>3</nLength>
+              <nLength>2</nLength>
               <nDecimalPos>0</nDecimalPos>
-              <eFormat>0</eFormat>
+              <eFormat>8</eFormat>
               <nFormatLength>0</nFormatLength>
               <eImgFmt>0</eImgFmt>
               <atmFormatFamily></atmFormatFamily>
@@ -9374,7 +9374,7 @@ COUNTRY_CODE is used for the numeric Country Code Number in PeopleSoft Financial
                 <rowset name="DBFldLabel" size="32" count="1">
                   <row>
                     <atmLabelID>GVT_CYBER_SEC_CD</atmLabelID>
-                    <atmLongName>Cyber Security Specialty</atmLongName>
+                    <atmLongName>Cyber Security Speciality</atmLongName>
                     <atmShortName>Cyber Sec Code</atmShortName>
                     <bIsDefault>1</bIsDefault>
                   </row>
@@ -9397,7 +9397,7 @@ COUNTRY_CODE is used for the numeric Country Code Number in PeopleSoft Financial
               <atmTimeZoneFieldName></atmTimeZoneFieldName>
               <nCurrencyCtlUse>0</nCurrencyCtlUse>
               <atmRelTmDtFieldName></atmRelTmDtFieldName>
-              <atmLongName>Cyber Security Specialty</atmLongName>
+              <atmLongName>Cyber Security Speciality</atmLongName>
               <atmShortName>Cyber Sec Code</atmShortName>
               <atmPhysicalRecNameList>POS_DTA_FED_SBR     </atmPhysicalRecNameList>
               <hDBFldContextLabel>HANDLE</hDBFldContextLabel>
@@ -13254,20 +13254,20 @@ COUNTRY_CODE is used for the numeric Country Code Number in PeopleSoft Financial
   <instance class="FIELD">
     <rowset name="Field" size="936" count="1">
       <row>
-        <szLastUpdDttm>2018-01-27-16.06.38.474994</szLastUpdDttm>
+        <szLastUpdDttm>2015-07-23-16.20.28.938336</szLastUpdDttm>
         <szLastUpdOprId>PPLSOFT</szLastUpdOprId>
         <szObjectOwnerID>HFG</szObjectOwnerID>
         <nUseCount>1</nUseCount>
         <bUseUpdate>1</bUseUpdate>
-        <lVersion>16</lVersion>
+        <lVersion>1</lVersion>
         <lSwapVersion>0</lSwapVersion>
         <nSwapNum>0</nSwapNum>
         <szFieldName>GVT_CYBER_SEC_CD</szFieldName>
         <szLanguageCd>ENG</szLanguageCd>
         <eFieldType>0</eFieldType>
-        <nLength>3</nLength>
+        <nLength>2</nLength>
         <nDecimalPos>0</nDecimalPos>
-        <eFormat>0</eFormat>
+        <eFormat>8</eFormat>
         <nFormatLength>0</nFormatLength>
         <eImgFmt>0</eImgFmt>
         <szFormatFamily></szFormatFamily>
@@ -13290,10 +13290,10 @@ COUNTRY_CODE is used for the numeric Country Code Number in PeopleSoft Financial
           <rowset name="DBFldLabel" size="264" count="1">
             <row>
               <szLabelID>GVT_CYBER_SEC_CD</szLabelID>
-              <szLongName>Cyber Security Specialty</szLongName>
+              <szLongName>Cyber Security Speciality</szLongName>
               <szShortName>Cyber Sec Code</szShortName>
               <bIsDefault>1</bIsDefault>
-              <szLastUpdDttm>2018-01-27-16.06.38.474994</szLastUpdDttm>
+              <szLastUpdDttm>2015-07-23-16.20.28.938336</szLastUpdDttm>
               <szLastUpdOprId>PPLSOFT</szLastUpdOprId>
               <nLangCount>0</nLangCount>
               <hLang>HANDLE</hLang>
@@ -13312,7 +13312,7 @@ COUNTRY_CODE is used for the numeric Country Code Number in PeopleSoft Financial
         <nTimeZoneUse>0</nTimeZoneUse>
         <szTimeZoneFieldName></szTimeZoneFieldName>
         <nCurrencyCtlUse>0</nCurrencyCtlUse>
-        <szLongName>Cyber Security Specialty</szLongName>
+        <szLongName>Cyber Security Speciality</szLongName>
         <szShortName>Cyber Sec Code</szShortName>
         <fStatus>0</fStatus>
         <nLangCount>0</nLangCount>
@@ -14525,13 +14525,13 @@ COUNTRY_CODE is used for the numeric Country Code Number in PeopleSoft Financial
   <instance class="RDM">
     <rowset name="RecDefn" size="920" count="1">
       <row>
-        <szLastUpdDttm>2018-01-27-16.06.36.474338</szLastUpdDttm>
+        <szLastUpdDttm>2018-02-04-02.18.35.178500</szLastUpdDttm>
         <szLastUpdOprId>PPLSOFT</szLastUpdOprId>
         <szObjectOwnerID>HHR</szObjectOwnerID>
         <nUseCount>1</nUseCount>
         <bUseUpdate>1</bUseUpdate>
-        <lVersion>16</lVersion>
-        <lSwapVersion>16</lSwapVersion>
+        <lVersion>6</lVersion>
+        <lSwapVersion>6</lSwapVersion>
         <nSwapNum>0</nSwapNum>
         <szRecName>POSITION_DATA</szRecName>
         <szLanguageCd>ENG</szLanguageCd>
@@ -22905,7 +22905,7 @@ Unit</atmLongName>
                   </row>
                 </rowset>
               </lpIpt>
-              <szLastUpdDttm>2018-01-27-16.06.36.474338</szLastUpdDttm>
+              <szLastUpdDttm>2018-02-04-02.18.35.178500</szLastUpdDttm>
               <szLastUpdOprId>PPLSOFT</szLastUpdOprId>
             </row>
             <row>
@@ -22955,7 +22955,7 @@ Unit</atmLongName>
                   </row>
                 </rowset>
               </lpIpt>
-              <szLastUpdDttm>2018-01-27-16.06.36.474338</szLastUpdDttm>
+              <szLastUpdDttm>2018-02-04-02.18.35.178500</szLastUpdDttm>
               <szLastUpdOprId>PPLSOFT</szLastUpdOprId>
             </row>
             <row>
@@ -23005,7 +23005,7 @@ Unit</atmLongName>
                   </row>
                 </rowset>
               </lpIpt>
-              <szLastUpdDttm>2018-01-27-16.06.36.474338</szLastUpdDttm>
+              <szLastUpdDttm>2018-02-04-02.18.35.178500</szLastUpdDttm>
               <szLastUpdOprId>PPLSOFT</szLastUpdOprId>
             </row>
             <row>
@@ -23055,7 +23055,7 @@ Unit</atmLongName>
                   </row>
                 </rowset>
               </lpIpt>
-              <szLastUpdDttm>2018-01-27-16.06.36.474338</szLastUpdDttm>
+              <szLastUpdDttm>2018-02-04-02.18.35.178500</szLastUpdDttm>
               <szLastUpdOprId>PPLSOFT</szLastUpdOprId>
             </row>
             <row>
@@ -23105,7 +23105,7 @@ Unit</atmLongName>
                   </row>
                 </rowset>
               </lpIpt>
-              <szLastUpdDttm>2018-01-27-16.06.36.474338</szLastUpdDttm>
+              <szLastUpdDttm>2018-02-04-02.18.35.178500</szLastUpdDttm>
               <szLastUpdOprId>PPLSOFT</szLastUpdOprId>
             </row>
             <row>
@@ -23155,7 +23155,7 @@ Unit</atmLongName>
                   </row>
                 </rowset>
               </lpIpt>
-              <szLastUpdDttm>2018-01-27-16.06.36.474338</szLastUpdDttm>
+              <szLastUpdDttm>2018-02-04-02.18.35.178500</szLastUpdDttm>
               <szLastUpdOprId>PPLSOFT</szLastUpdOprId>
             </row>
             <row>
@@ -23189,7 +23189,7 @@ Unit</atmLongName>
               </lpKdt>
               <nDDLCount>0</nDDLCount>
               <lpIpt>POINTER</lpIpt>
-              <szLastUpdDttm>2018-01-27-16.06.36.474338</szLastUpdDttm>
+              <szLastUpdDttm>2018-02-04-02.18.35.178500</szLastUpdDttm>
               <szLastUpdOprId>PPLSOFT</szLastUpdOprId>
             </row>
             <row>
@@ -23239,7 +23239,7 @@ Unit</atmLongName>
                   </row>
                 </rowset>
               </lpIpt>
-              <szLastUpdDttm>2018-01-27-16.06.36.474338</szLastUpdDttm>
+              <szLastUpdDttm>2018-02-04-02.18.35.178500</szLastUpdDttm>
               <szLastUpdOprId>PPLSOFT</szLastUpdOprId>
             </row>
             <row>
@@ -23319,7 +23319,7 @@ Unit</atmLongName>
                   </row>
                 </rowset>
               </lpIpt>
-              <szLastUpdDttm>2018-01-27-16.06.36.474338</szLastUpdDttm>
+              <szLastUpdDttm>2018-02-04-02.18.35.178500</szLastUpdDttm>
               <szLastUpdOprId>PPLSOFT</szLastUpdOprId>
             </row>
             <row>
@@ -23394,7 +23394,7 @@ Unit</atmLongName>
                   </row>
                 </rowset>
               </lpIpt>
-              <szLastUpdDttm>2018-01-27-16.06.36.474338</szLastUpdDttm>
+              <szLastUpdDttm>2018-02-04-02.18.35.178500</szLastUpdDttm>
               <szLastUpdOprId>PPLSOFT</szLastUpdOprId>
             </row>
             <row>
@@ -23428,7 +23428,7 @@ Unit</atmLongName>
               </lpKdt>
               <nDDLCount>0</nDDLCount>
               <lpIpt>POINTER</lpIpt>
-              <szLastUpdDttm>2018-01-27-16.06.36.474338</szLastUpdDttm>
+              <szLastUpdDttm>2018-02-04-02.18.35.178500</szLastUpdDttm>
               <szLastUpdOprId>PPLSOFT</szLastUpdOprId>
             </row>
           </rowset>
@@ -32213,13 +32213,13 @@ Unit</szLongName>
   <instance class="RDM">
     <rowset name="RecDefn" size="920" count="1">
       <row>
-        <szLastUpdDttm>2015-08-19-04.02.44.578565</szLastUpdDttm>
+        <szLastUpdDttm>2018-02-04-02.18.36.177941</szLastUpdDttm>
         <szLastUpdOprId>PPLSOFT</szLastUpdOprId>
         <szObjectOwnerID>HDI</szObjectOwnerID>
         <nUseCount>1</nUseCount>
         <bUseUpdate>1</bUseUpdate>
-        <lVersion>16</lVersion>
-        <lSwapVersion>16</lSwapVersion>
+        <lVersion>6</lVersion>
+        <lSwapVersion>6</lSwapVersion>
         <nSwapNum>0</nSwapNum>
         <szRecName>POS_DATA_EF_VW</szRecName>
         <szLanguageCd>ENG</szLanguageCd>
@@ -39864,12 +39864,12 @@ Unit</atmLongName>
   <instance class="SRM">
     <rowset name="SrmDefn" size="432" count="1">
       <row>
-        <szLastUpdDttm>2018-01-27-16.09.18.596413</szLastUpdDttm>
+        <szLastUpdDttm>2018-02-04-02.18.36.178100</szLastUpdDttm>
         <szLastUpdOprId>PS</szLastUpdOprId>
         <szObjectOwnerId></szObjectOwnerId>
         <nUseCount>1</nUseCount>
         <bUseUpdate>1</bUseUpdate>
-        <lVersion>7</lVersion>
+        <lVersion>5</lVersion>
         <lSwapVersion>0</lSwapVersion>
         <nSwapNum>0</nSwapNum>
         <szSqlId>IO_POS_DESCR_VW</szSqlId>
@@ -39909,12 +39909,12 @@ Unit</atmLongName>
   <instance class="SRM">
     <rowset name="SrmDefn" size="432" count="1">
       <row>
-        <szLastUpdDttm>2018-01-26-23.07.43.354175</szLastUpdDttm>
+        <szLastUpdDttm>2018-02-04-02.20.34.177772</szLastUpdDttm>
         <szLastUpdOprId>PS</szLastUpdOprId>
         <szObjectOwnerId>HDI</szObjectOwnerId>
         <nUseCount>1</nUseCount>
         <bUseUpdate>1</bUseUpdate>
-        <lVersion>5</lVersion>
+        <lVersion>6</lVersion>
         <lSwapVersion>0</lSwapVersion>
         <nSwapNum>0</nSwapNum>
         <szSqlId>POS_DATA_EF_VW</szSqlId>
@@ -39931,11 +39931,11 @@ Unit</atmLongName>
               <cDbType> </cDbType>
               <szEffDt>1900-01-01</szEffDt>
               <szDescr></szDescr>
-              <lSqlTextLen>3938</lSqlTextLen>
+              <lSqlTextLen>3898</lSqlTextLen>
               <lpszSqlText> POINTER
-                <rowset name="char" size="3938" count="1">
+                <rowset name="char" size="3898" count="1">
                   <row>
-                    <lpszSqlText>SELECT POSITION_NBR , EFFDT , EFF_STATUS , DESCR , DESCRSHORT , ACTION , ACTION_REASON , ACTION_DT , BUSINESS_UNIT , DEPTID , JOBCODE , POSN_STATUS , STATUS_DT , BUDGETED_POSN , CONFIDENTIAL_POSN , KEY_POSITION , JOB_SHARE , MAX_HEAD_COUNT , UPDATE_INCUMBENTS , REPORTS_TO , REPORT_DOTTED_LINE , ORGCODE , ORGCODE_FLAG , LOCATION , MAIL_DROP , COUNTRY_CODE , PHONE , COMPANY , STD_HOURS , STD_HRS_FREQUENCY , UNION_CD , SHIFT , REG_TEMP , FULL_PART_TIME , MON_HRS , TUES_HRS , WED_HRS , THURS_HRS , FRI_HRS , SAT_HRS , SUN_HRS , BARG_UNIT , GVT_PAY_PLAN , SEASONAL , TRN_PROGRAM , LANGUAGE_SKILL , MANAGER_LEVEL , FLSA_STATUS , GVT_WIP_STATUS , GVT_STATUS_TYPE , GVT_WORK_SCHED , GVT_SUB_AGENCY , GVT_DT_POSN_ESTAB , GVT_COMP_AREA , GVT_COMP_LEVEL , GVT_ORG_TTL_CD , GVT_ORG_TTL_DESCR , GVT_DRUG_TEST_REQ , GVT_FUND_SOURCE , GVT_INTEL_POSN , GVT_LEO_POSITION , GVT_MOB_POSN_IND , GVT_PROC_INTEG_PSN , GVT_PRESIDENT_APPT , GVT_NTE_DATE , GVT_OCC_SERIES , GVT_PAR_NBR , GVT_PAREN_TITLE , GVT_PERF_PLAN , GVT_POI , GVT_POSN_LOC , GVT_POSN_OCCUPIED , GVT_POSN_SENS_CD , GVT_STAFF_LINE , GVT_LAST_AUDIT_DT , GVT_AUDITED_BY_ID , GVT_OBLIGATED_TO , GVT_OBLIG_EXPIR_DT , GVT_TARGET_GRADE , GVT_PI_UPD_IND ,GVT_EXEC_FIN_DISCL ,GVT_NFC_FUNCTN_CD ,GVT_MAINT_REVIEWCD ,GVT_MANTREV_RESULT ,GVT_VACY_REVW_CD ,GVT_ORG_SUBAGENCY ,GVT_ORG_NUMCD1 ,GVT_ORG_NUMCD2 ,GVT_ORG_NUMCD3 ,GVT_ORG_NUMCD4 ,GVT_ORG_NUMCD5 ,GVT_ORG_NUMCD6 ,GVT_ORG_NUMCD7 ,GVT_NFC_PI_IND_OVR ,GVT_CYBER_SEC_CD , REG_REGION , CLASS_INDC , ENCUMBER_INDC , FTE , POSITION_POOL_ID , EG_ACADEMIC_RANK , EG_GROUP , ENCUMB_SAL_OPTN , ENCUMB_SAL_AMT , HEALTH_CERTIFICATE , SIGN_AUTHORITY , ADDS_TO_FTE_ACTUAL , SAL_ADMIN_PLAN , GRADE , GRADE_FROM , STEP_FROM , GRADE_TO , STEP_TO , STEP , PKG_TEMPLATE_ID , PKG_RULE_ID , DESCRLONG , SEC_CLEARANCE_TYPE -- , NOT_THIS_FIELD FROM PS_POSITION_DATA POS WHERE POS.EFFDT = ( SELECT MAX(EFFDT) FROM PS_POSITION_DATA WHERE POSITION_NBR = POS.POSITION_NBR AND EFFDT &lt;= %CurrentDateIn)</lpszSqlText>
+                    <lpszSqlText>SELECT POSITION_NBR , EFFDT , EFF_STATUS , DESCR , DESCRSHORT , ACTION , ACTION_REASON , ACTION_DT , BUSINESS_UNIT , DEPTID , JOBCODE , POSN_STATUS , STATUS_DT , BUDGETED_POSN , CONFIDENTIAL_POSN , KEY_POSITION , JOB_SHARE , MAX_HEAD_COUNT , UPDATE_INCUMBENTS , REPORTS_TO , REPORT_DOTTED_LINE , ORGCODE , ORGCODE_FLAG , LOCATION , MAIL_DROP , COUNTRY_CODE , PHONE , COMPANY , STD_HOURS , STD_HRS_FREQUENCY , UNION_CD , SHIFT , REG_TEMP , FULL_PART_TIME , MON_HRS , TUES_HRS , WED_HRS , THURS_HRS , FRI_HRS , SAT_HRS , SUN_HRS , BARG_UNIT , GVT_PAY_PLAN , SEASONAL , TRN_PROGRAM , LANGUAGE_SKILL , MANAGER_LEVEL , FLSA_STATUS , GVT_WIP_STATUS , GVT_STATUS_TYPE , GVT_WORK_SCHED , GVT_SUB_AGENCY , GVT_DT_POSN_ESTAB , GVT_COMP_AREA , GVT_COMP_LEVEL , GVT_ORG_TTL_CD , GVT_ORG_TTL_DESCR , GVT_DRUG_TEST_REQ , GVT_FUND_SOURCE , GVT_INTEL_POSN , GVT_LEO_POSITION , GVT_MOB_POSN_IND , GVT_PROC_INTEG_PSN , GVT_PRESIDENT_APPT , GVT_NTE_DATE , GVT_OCC_SERIES , GVT_PAR_NBR , GVT_PAREN_TITLE , GVT_PERF_PLAN , GVT_POI , GVT_POSN_LOC , GVT_POSN_OCCUPIED , GVT_POSN_SENS_CD , GVT_STAFF_LINE , GVT_LAST_AUDIT_DT , GVT_AUDITED_BY_ID , GVT_OBLIGATED_TO , GVT_OBLIG_EXPIR_DT , GVT_TARGET_GRADE , GVT_PI_UPD_IND ,GVT_EXEC_FIN_DISCL ,GVT_NFC_FUNCTN_CD ,GVT_MAINT_REVIEWCD ,GVT_MANTREV_RESULT ,GVT_VACY_REVW_CD ,GVT_ORG_SUBAGENCY ,GVT_ORG_NUMCD1 ,GVT_ORG_NUMCD2 ,GVT_ORG_NUMCD3 ,GVT_ORG_NUMCD4 ,GVT_ORG_NUMCD5 ,GVT_ORG_NUMCD6 ,GVT_ORG_NUMCD7 ,GVT_NFC_PI_IND_OVR ,GVT_CYBER_SEC_CD , REG_REGION , CLASS_INDC , ENCUMBER_INDC , FTE , POSITION_POOL_ID , EG_ACADEMIC_RANK , EG_GROUP , ENCUMB_SAL_OPTN , ENCUMB_SAL_AMT , HEALTH_CERTIFICATE , SIGN_AUTHORITY , ADDS_TO_FTE_ACTUAL , SAL_ADMIN_PLAN , GRADE , GRADE_FROM , STEP_FROM , GRADE_TO , STEP_TO , STEP , PKG_TEMPLATE_ID , PKG_RULE_ID , DESCRLONG , SEC_CLEARANCE_TYPE FROM PS_POSITION_DATA POS WHERE POS.EFFDT = ( SELECT MAX(EFFDT) FROM PS_POSITION_DATA WHERE POSITION_NBR = POS.POSITION_NBR AND EFFDT &lt;= %CurrentDateIn)</lpszSqlText>
                   </row>
                 </rowset>
               </lpszSqlText>
