@@ -13,12 +13,14 @@ $pia_domain_list = hiera('pia_domain_list')
 if $pia_domain_list {
   $pia_domain_list.each |$domain_name, $pia_domain_info| {
 
-    $baseWebPath = "${pia_domain_info['ps_cfg_home_dir']}/webserv/${domain_name}/applications/peoplesoft/PORTAL.war"
-    $root_signon_url = "${::fqdn}"
+    $base_web_path = "${pia_domain_info['ps_cfg_home_dir']}/webserv/${domain_name}/applications/peoplesoft/PORTAL.war"
+    $webserver_settings = $pia_domain_info['webserver_settings']
+    $http_port = $webserver_settings['webserver_http_port']
+    $root_signon_url = "http://${::fqdn}:${http_port}/ps/signon.html"
 
-    file { "${baseWebPath}/index.html":
-        ensure    => file,
-        content   => inline_template($index_html_template),
+    file { "${base_web_path}/index.html":
+        ensure  => file,
+        content => inline_template($index_html_template),
       }
   }
 }
