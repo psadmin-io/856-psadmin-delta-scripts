@@ -1,0 +1,46 @@
+psft_runtime_group_name:    psoft
+psft_runtime_user_name:     psoft
+psoftadm_user_pwd:          securestring
+
+groups:
+  psft_runtime_group:
+    name:     "%{hiera('psft_runtime_group_name')}"
+  app_install_group:
+    name:     "%{hiera('psft_app_install_group_name')}"
+  oracle_install_group:
+    remove:   false
+    name:     "%{hiera('oracle_install_group_name')}"
+  oracle_runtime_group:
+    remove:   false
+    name:     "%{hiera('oracle_runtime_group_name')}"
+
+users:
+  tools_install_user:
+    name:     "%{hiera('psft_install_user_name')}"
+    gid:      "%{hiera('oracle_install_group_name')}"
+    groups:   "%{hiera('psft_runtime_group_name')}"
+    expiry:   absent
+    home_dir: "%{hiera('user_home_dir')}/%{hiera('psft_install_user_name')}"
+    password: "%{hiera('psft_user_pwd')}"
+  psft_runtime_user:
+    name:     "%{hiera('psft_runtime_user_name')}"
+    uid:      "501"
+    gid:      "1001"
+    groups:   "%{hiera('psft_runtime_group_name')}"
+    expiry:   absent
+    home_dir: "%{hiera('user_home_dir')}/%{hiera('psft_runtime_user_name')}"
+    password: "%{hiera('psoftadm_user_pwd')}"
+  app_install_user:
+    name:     "%{hiera('psft_app_install_user_name')}"
+    gid:      "%{hiera('psft_app_install_group_name')}"
+    groups:   "%{hiera('psft_runtime_group_name')}"
+    expiry:   absent
+    home_dir: "%{hiera('user_home_dir')}/%{hiera('psft_app_install_user_name')}"
+    password: "%{hiera('psft_user_pwd')}"
+  oracle_user:
+    name:     "%{hiera('oracle_user_name')}"
+    gid:      "%{hiera('oracle_install_group_name')}"
+    groups:   "%{hiera('oracle_runtime_group_name')}"
+    expiry:   absent
+    home_dir: "%{hiera('user_home_dir')}/%{hiera('oracle_user_name')}"
+    password: "%{hiera('oracle_user_pwd')}" 
