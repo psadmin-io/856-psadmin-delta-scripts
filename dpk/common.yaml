@@ -1,0 +1,15 @@
+---
+string_plain: Hello
+string_single: 'Hello World \'
+string_double: "Hello World\\!"
+number: 101
+
+hash_name:
+  value_one: 'test'
+  value_two: "%{hiera('number')}"
+  value_fact: "%{::hostname}"
+  value_lookup: "%{hiera('array_name')}"
+
+array_name:
+  - one 
+  - two
