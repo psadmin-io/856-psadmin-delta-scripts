@@ -1,6 +1,7 @@
 function install_choco_packages {  
   choco install git.install -y
   choco install selenium-chrome-driver -y
+  choco install selenium-gecko-driver -y
 }
 
 function download_scripts {
@@ -14,6 +15,7 @@ function install_gems {
   Copy-Item -Path "C:\vagrant\856-psadmin-delta-scripts\init\rubyGemsCA.pem" -Destination "C:\Program Files\Puppet Labs\Puppet\sys\ruby\lib\ruby\2.1.0\rubygems\ssl_certs"
   gem install psadmin_plus
   gem install selenium-webdriver
+  gem install rspec
 }
 function configure_tns {
   if (!(Get-Content C:\psft\db\tnsnames.ora | Select-String HCMLNX)) { 
@@ -41,9 +43,13 @@ function configure_profile {
   $profile_file = "C:\Users\Administrator\Documents\WindowsPowerShell\profile.ps1"
   if (!(test-path $profile_file)) {
     Add-Content -Path $profile_file -Value "`$env:PATH+=`";C:\Program Files\Puppet Labs\Puppet\sys\ruby\bin`""
+    Add-Content -Path $profile_file -Value "`$env:PATH+=`";C:\Program Files\Mozilla Firefox`""
   }
 }
 
+function map_drives {
+  net use t: \\10.0.0.10\tools_client
+}
 
 # Prepare Course Configuration
 . install_choco_packages
@@ -52,3 +58,4 @@ function configure_profile {
 . configure_tns
 . load_cust_project
 . configure_profile
+. map_drives
