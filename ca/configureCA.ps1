@@ -33,7 +33,8 @@ Param(
   [Parameter()][String]$DB_CONNECT_ID                 = "people",
   [Parameter()][String]$DB_CONNECT_PWD                = "peop1e",
   [Parameter()][String]$DB_USER                       = "PS",
-  [Parameter()][String]$DB_PWD                        = "PS"
+  [Parameter()][String]$DB_PWD                        = "PS",
+  [Parameter()][String]$CLIENT_LOCATION               ="C:\PT${PT_VERSION}_Client_ORA"
 )
 
 # Valid values: "Stop", "Inquire", "Continue", "Suspend", "SilentlyContinue"
@@ -42,7 +43,6 @@ $DebugPreference = "SilentlyContinue"
 $VerbosePreference = "SilentlyContinue"
 
 function build_path_variables {  
-    $CLIENT_LOCATION="C:\PT${PT_VERSION}_Client_ORA"
     $SQLPLUS_LOCATION="${BASE}\db\oracle-server\${ORACLE_VERSION}\BIN\sqlplus.exe"
     $CA_PATH="${BASE}\ca\${PI_VERSION}-${PT_VERSION}"
     $START_LOCATION = $(Get-Location)
