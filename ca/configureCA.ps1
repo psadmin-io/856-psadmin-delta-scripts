@@ -6,6 +6,7 @@
     .PARAMETER ACTION
         Action to perform against Change Assistant. Valid actions are: 
           * options
+          * pumsource
           * exportcfg
           * importcfg 
           * createdb
@@ -73,7 +74,30 @@ function load_general_settings {
         -OD "${BASE}\ca\output" `
         -DL "${BASE}\ca\download" `
         -SQH "${SQLPLUS_LOCATION}" `
-        -EMYN N 
+        -EMYN N `
+}
+
+function define_pum_source {
+    
+    Set-Location $CA_PATH
+    & "${CA_PATH}\changeassistant.bat" `
+        -MODE UM `
+        -ACTION OPTIONS `
+        -OUT "${BASE}\ca\output\ca.log" `
+        -REPLACE Y `
+        -EXONERR Y `
+        -SWP False `
+        -MCP 5 `
+        -PSH "${CLIENT_LOCATION}" `
+        -STG "${BASE}\ca\stage" `
+        -OD "${BASE}\ca\output" `
+        -DL "${BASE}\ca\download" `
+        -SQH "${SQLPLUS_LOCATION}" `
+        -EMYN N `
+        -SRCYN Y `
+        -SRCENV "${DATABASE}" `
+        -PUH "${BASE}\pt\hcm_pi_home" `
+        -PIA "http://hcmpum-win.ec2.internal:8000/ps/signon.html"
 }
 
 function export_ca_config {
@@ -98,32 +122,31 @@ function import_ca_config {
       -REPLACEDB Y
 }
 
-# Stubbed for future feature
 function create_new_database {
   Set-Location $CA_PATH
   & "${CA_PATH}\changeassistant.bat" `
       -MODE UM `
       -ACTION ENVCREATE `
-      -TGTENV=${DATABASE} `
-      -CT=2 `
-      -UNI=Y `
-      -CA=${ACCESS_ID} `
-      -CAP=${ACCESS_PWD} `
-      -CO=${DB_USER} `
-      -CP=${DB_USER_PWD} `
-      -CI=${DB_CONNECT_ID} `
-      -CW=${DB_CONNECT_PWD} `
-      -CZYN=N `
-      -SQH=${SQLPLUS_LOCATION} `
-      -INP=All `
-      -PL=HCM `
-      -IND=ALL `
-      -INL=All `
-      -INBL=ENG `
-      -PSH=${CLIENT_LOCATION} `
-      -PAH=${CLIENT_LOCATION} `
-      -PCH=${CLIENT_LOCATION} `
-      -REPLACE=N
+      -TGTENV ${DATABASE} `
+      -CT 2 `
+      -UNI Y `
+      -CA ${ACCESS_ID} `
+      -CAP ${ACCESS_PWD} `
+      -CO ${DB_USER} `
+      -CP ${DB_PWD} `
+      -CI ${DB_CONNECT_ID} `
+      -CW ${DB_CONNECT_PWD} `
+      -CZYN N `
+      -SQH ${SQLPLUS_LOCATION} `
+      -INP All `
+      -PL HCM `
+      -IND ALL `
+      -INL All `
+      -INBL ENG `
+      -PSH ${CLIENT_LOCATION} `
+      -PAH ${CLIENT_LOCATION} `
+      -PCH ${CLIENT_LOCATION} `
+      -REPLACE N
 }
 
 # Stubbed for future feature
@@ -154,7 +177,7 @@ function update_database {
       -REPLACE=Y
 }
 
-function upload_databse_to_pum {
+function upload_database_to_pum {
     Set-Location $CA_PATH
     & "${CA_PATH}\changeassistant.bat" `
         -MODE UM `
@@ -169,6 +192,9 @@ switch ($ACTION) {
   "options" { 
     . load_general_settings
    }
+   "pumsource" { 
+    . define_pum_source
+   }
    "exportcfg" {
     . export_ca_config
    }
@@ -182,7 +208,7 @@ switch ($ACTION) {
      . update_database
    }
    "uploaddb" {
-     . upload_databse_to_pum
+     . upload_database_to_pum
    }
   Default {
     Write-Host "-action is invalid. Valid actions are: options, exportcfg, importcfg, createdb, updatedb, uploaddb"

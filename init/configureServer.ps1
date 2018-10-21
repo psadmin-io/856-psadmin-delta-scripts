@@ -13,7 +13,7 @@ function download_scripts {
 function install_gems {
   $env:PATH+=";C:\Program Files\Puppet Labs\Puppet\sys\ruby\bin"
   Copy-Item -Path "C:\vagrant\856-psadmin-delta-scripts\init\rubyGemsCA.pem" -Destination "C:\Program Files\Puppet Labs\Puppet\sys\ruby\lib\ruby\2.1.0\rubygems\ssl_certs"
-  gem install psadmin_plus
+  #gem install psadmin_plus
   gem install selenium-webdriver
   gem install rspec
 }
