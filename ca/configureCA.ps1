@@ -26,16 +26,18 @@ Param(
   [Parameter(Mandatory=$true)][String]$ACTION         = "other",
   [Parameter()][String]$BASE                          = "c:\psft",
   [Parameter(Mandatory=$true)][String]$PT_VERSION     = "NOTSET",
-  [Parameter(Mandatory=$true)][String]$PI_VERSION     = "NOTSET",
+  [Parameter()][String]$PI_VERSION                    = "NOTSET",
   [Parameter()][String]$DATABASE                      = "HCMWIN",
   [Parameter()][String]$ORACLE_VERSION                = "12.1.0.2",
   [Parameter()][String]$ACCESS_ID                     = "SYSADM",
   [Parameter()][String]$ACCESS_PWD                    = "SYSADM",
   [Parameter()][String]$DB_CONNECT_ID                 = "people",
   [Parameter()][String]$DB_CONNECT_PWD                = "peop1e",
-  [Parameter()][String]$DB_USER                       = "PS",
-  [Parameter()][String]$DB_PWD                        = "PS",
-  [Parameter()][String]$CLIENT_LOCATION               ="C:\PT${PT_VERSION}_Client_ORA"
+  [Parameter()][String]$DB_USER                       = "VP1",
+  [Parameter()][String]$DB_PWD                        = "VP1",
+  [Parameter()][String]$CLIENT_LOCATION               = "C:\PT${PT_VERSION}_Client_ORA",
+  [Parameter()][String]$APP                           = "hcm",
+  [Parameter()][String]$DNS_NAME                      = "psterraform.ec2.internal"
 )
 
 # Valid values: "Stop", "Inquire", "Continue", "Suspend", "SilentlyContinue"
@@ -45,7 +47,11 @@ $VerbosePreference = "SilentlyContinue"
 
 function build_path_variables {  
     $SQLPLUS_LOCATION="${BASE}\db\oracle-server\${ORACLE_VERSION}\BIN\sqlplus.exe"
-    $CA_PATH="${BASE}\ca\${PI_VERSION}-${PT_VERSION}"
+    if ($PI_VERSION -eq "NOTSET") {
+        $CA_PATH = "C:\Program Files\PeopleSoft\Change Assistant"
+    } else {
+        $CA_PATH="${BASE}\ca\${PI_VERSION}-${PT_VERSION}"
+    }
     $START_LOCATION = $(Get-Location)
 }
 
@@ -96,8 +102,8 @@ function define_pum_source {
         -EMYN N `
         -SRCYN Y `
         -SRCENV "${DATABASE}" `
-        -PUH "${BASE}\pt\hcm_pi_home" `
-        -PIA "http://hcmpum-win.ec2.internal:8000/ps/signon.html"
+        -PUH "${BASE}\pt\${APP}_pi_home" `
+        -PIA "http://${DNS_NAME}:8000/ps/signon.html"
 }
 
 function export_ca_config {
