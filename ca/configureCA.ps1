@@ -59,6 +59,7 @@ function create_ca_folders {
 function load_general_settings {
     param (
         [Parameter(Mandatory=$true)][String]$PT_VERSION,
+        [Parameter(Mandatory=$true)][String]$SQLPLUS_LOCATION,
         [Parameter()][String]$CLIENT_LOCATION  = "C:\PT${PT_VERSION}_Client_ORA"
     )
     
@@ -81,9 +82,9 @@ function load_general_settings {
 
 function define_pum_source {
     param (
+        [Parameter(Mandatory=$true)][String]$DNS_NAME,
         [Parameter(Mandatory=$true)][String]$PT_VERSION,
-        [Parameter()][String]$CLIENT_LOCATION  = "C:\PT${PT_VERSION}_Client_ORA",
-        [Parameter(Mandatory=$true)][String]$DNS_NAME
+        [Parameter()][String]$CLIENT_LOCATION  = "C:\PT${PT_VERSION}_Client_ORA"
     )
     Set-Location $CA_PATH
     & "${CA_PATH}\changeassistant.bat" `
@@ -130,7 +131,15 @@ function import_ca_config {
 
 function create_new_database {
     param(
+        [Parameter(Mandatory=$true)][String]$DATABASE,
+        [Parameter(Mandatory=$true)][String]$ACCESS_ID,
+        [Parameter(Mandatory=$true)][String]$ACCESS_PWD,
+        [Parameter(Mandatory=$true)][String]$DB_USER,
+        [Parameter(Mandatory=$true)][String]$DB_USER_PWD,
+        [Parameter(Mandatory=$true)][String]$DB_CONNECT_ID,
+        [Parameter(Mandatory=$true)][String]$DB_CONNECT_PWD,
         [Parameter(Mandatory=$true)][String]$PT_VERSION,
+        [Parameter()][String]$SQLPLUS_LOCATION,
         [Parameter()][String]$CLIENT_LOCATION  = "C:\PT${PT_VERSION}_Client_ORA"
     )
   Set-Location $CA_PATH
@@ -159,7 +168,6 @@ function create_new_database {
       -REPLACE N
 }
 
-# Stubbed for future feature
 function update_database {
     param(
         [Parameter(Mandatory=$true)][String]$DATABASE,
@@ -170,6 +178,7 @@ function update_database {
         [Parameter(Mandatory=$true)][String]$DB_CONNECT_ID,
         [Parameter(Mandatory=$true)][String]$DB_CONNECT_PWD,
         [Parameter(Mandatory=$true)][String]$PT_VERSION,
+        [Parameter()][String]$SQLPLUS_LOCATION,
         [Parameter()][String]$CLIENT_LOCATION  = "C:\PT${PT_VERSION}_Client_ORA"
     )
   Set-Location $CA_PATH
@@ -212,9 +221,12 @@ function upload_database_to_pum {
 
 function upload_project_to_pum {
     param(
-        [Parameter(Mandatory=$true)][String]$DATABASE,
-        [Parameter(Mandatory=$true)][String]$PROJECT
+        [Parameter(Mandatory=$true)]$DATABASE,
+        [Parameter(Mandatory=$true)]$PROJECT
     )
+
+    Write-Host "Uploading ${PROJECT} from ${DATABASE} to the Update Manager" -ForegroundColor Green
+
     Set-Location $CA_PATH
     & "${CA_PATH}\changeassistant.bat" `
         -MODE UM `
@@ -222,17 +234,18 @@ function upload_project_to_pum {
         -RPSTTYPE CUST `
         -PRJTYPE MO `
         -PRJFROMDB ${DATABSE}:${PROJECT} `
-        -EXONERR N
+        -REPLACE Y `
+        -EXONERR Y
 }
 
 . build_path_variables
 . create_ca_folders
 switch ($ACTION) {
   "options" { 
-    . load_general_settings
+    . load_general_settings $PT_VERSION $SQLPLUS_LOCATION
    }
    "pumsource" { 
-    . define_pum_source
+    . define_pum_source $DNS_NAME $PT_VERSION
    }
    "exportcfg" {
     . export_ca_config
@@ -241,16 +254,16 @@ switch ($ACTION) {
      . import_ca_config
    }
    "createdb" {
-     . create_new_database
+     . create_new_database $DATABASE $ACCESS_ID $ACCESS_PWD $DB_USER $DB_USER_PWD $DB_CONNECT_ID $DB_CONNECT_PWD $PT_VERSION $SQLPLUS_LOCATION
    }
    "updatedb" {
-     . update_database
+     . update_database $DATABASE $ACCESS_ID $ACCESS_PWD $DB_USER $DB_USER_PWD $DB_CONNECT_ID $DB_CONNECT_PWD $PT_VERSION $SQLPLUS_LOCATION
    }
    "uploaddb" {
-     . upload_database_to_pum
+     . upload_database_to_pum $DATABASE
    }
    "uploadproject" {
-     . upload_project_to_pum
+     . upload_project_to_pum $DATABASE $PROJECT
    }
   Default {
     Write-Host "-action is invalid. Valid actions are: options, exportcfg, importcfg, createdb, updatedb, uploaddb"
