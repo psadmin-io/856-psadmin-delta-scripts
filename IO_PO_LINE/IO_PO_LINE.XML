@@ -3,12 +3,12 @@
   <instance class="PJM">
     <rowset name="PjmDefn" size="2832" count="1">
       <row>
-        <szLastUpdDttm>2019-01-03-16.21.27.253704</szLastUpdDttm>
+        <szLastUpdDttm>2019-01-04-03.56.49.321346</szLastUpdDttm>
         <szLastUpdOprId>VP1</szLastUpdOprId>
         <szObjectOwnerID></szObjectOwnerID>
         <nUseCount>1</nUseCount>
         <bUseUpdate>1</bUseUpdate>
-        <lVersion>2319</lVersion>
+        <lVersion>2321</lVersion>
         <lSwapVersion>0</lSwapVersion>
         <nSwapNum>0</nSwapNum>
         <szProjectName>IO_PO_LINE</szProjectName>
@@ -16,8 +16,8 @@
         <szProjectDescr>Modify PO_LINE Record</szProjectDescr>
         <szSrcDBName>PSFTDEV</szSrcDBName>
         <szSrcOprId>VP1</szSrcOprId>
-        <szSessionId>a8225704-0f73-11e9-8ddf-a0ccb4eb5b05</szSessionId>
-        <szRunDtTm>2019-01-03-16.21.42.253548</szRunDtTm>
+        <szSessionId>c5c8a349-0fd4-11e9-a4db-b1f716d365a7</szSessionId>
+        <szRunDtTm>2019-01-04-03.56.53.321461</szRunDtTm>
         <szTgtServerName></szTgtServerName>
         <szTgtDBName></szTgtDBName>
         <szTgtOprId></szTgtOprId>
@@ -40,9 +40,9 @@
             </row>
           </rowset>
         </hDescrLong>
-        <nProjectCount>3</nProjectCount>
+        <nProjectCount>4</nProjectCount>
         <lpPit> POINTER
-          <rowset name="PjmPit" size="2568" count="3">
+          <rowset name="PjmPit" size="3424" count="4">
             <row>
               <eObjectType>0</eObjectType>
               <szObjectValue_0>PO_LINE</szObjectValue_0>
@@ -76,6 +76,24 @@
               <eTargetStatus>0</eTargetStatus>
               <eUpgradeAction>0</eUpgradeAction>
               <bTakeAction>1</bTakeAction>
+              <bCopyDone>1</bCopyDone>
+              <eRowStatus>3</eRowStatus>
+            </row>
+            <row>
+              <eObjectType>30</eObjectType>
+              <szObjectValue_0>IO_LINE_FS_VW</szObjectValue_0>
+              <szObjectValue_1>2</szObjectValue_1>
+              <szObjectValue_2></szObjectValue_2>
+              <szObjectValue_3></szObjectValue_3>
+              <eObjectID_0>65</eObjectID_0>
+              <eObjectID_1>81</eObjectID_1>
+              <eObjectID_2>0</eObjectID_2>
+              <eObjectID_3>0</eObjectID_3>
+              <bExecute>0</bExecute>
+              <eSourceStatus>0</eSourceStatus>
+              <eTargetStatus>0</eTargetStatus>
+              <eUpgradeAction>0</eUpgradeAction>
+              <bTakeAction>1</bTakeAction>
               <bCopyDone>0</bCopyDone>
               <eRowStatus>3</eRowStatus>
             </row>
@@ -94,7 +112,7 @@
               <eTargetStatus>0</eTargetStatus>
               <eUpgradeAction>0</eUpgradeAction>
               <bTakeAction>1</bTakeAction>
-              <bCopyDone>0</bCopyDone>
+              <bCopyDone>1</bCopyDone>
               <eRowStatus>3</eRowStatus>
             </row>
           </rowset>
@@ -20643,6 +20661,51 @@ Unit</atmLongName>
         <hSecRec>HANDLE</hSecRec>
         <nMatVwDefnCount>0</nMatVwDefnCount>
         <hMatVwDefn>HANDLE</hMatVwDefn>
+      </row>
+    </rowset>
+  </instance>
+  <instance class="SRM">
+    <rowset name="SrmDefn" size="432" count="1">
+      <row>
+        <szLastUpdDttm>2019-01-04-03.56.39.321640</szLastUpdDttm>
+        <szLastUpdOprId>VP1</szLastUpdOprId>
+        <szObjectOwnerId></szObjectOwnerId>
+        <nUseCount>1</nUseCount>
+        <bUseUpdate>1</bUseUpdate>
+        <lVersion>182</lVersion>
+        <lSwapVersion>0</lSwapVersion>
+        <nSwapNum>0</nSwapNum>
+        <szSqlId>IO_LINE_FS_VW</szSqlId>
+        <szSqlType>2</szSqlType>
+        <szLanguageCd>ENG</szLanguageCd>
+        <bEnableEffDt>0</bEnableEffDt>
+        <cEnableEffDt>N</cEnableEffDt>
+        <lStmtCount>1</lStmtCount>
+        <lpStmtT> POINTER
+          <rowset name="SrmStmt" size="144" count="1">
+            <row>
+              <szMarket>GBL</szMarket>
+              <eDbType>32</eDbType>
+              <cDbType> </cDbType>
+              <szEffDt>1900-01-01</szEffDt>
+              <szDescr></szDescr>
+              <lSqlTextLen>142</lSqlTextLen>
+              <lpszSqlText> POINTER
+                <rowset name="char" size="142" count="1">
+                  <row>
+                    <lpszSqlText>SELECT A.BUSINESS_UNIT ,A.PO_ID ,A.LINE_NBR ,A.OPRID FROM PS_PO_LINE_FS</lpszSqlText>
+                  </row>
+                </rowset>
+              </lpszSqlText>
+              <lDescrLongLen>0</lDescrLongLen>
+              <lpszDescrLong>POINTER</lpszDescrLong>
+              <nLangCount>0</nLangCount>
+              <hLang>HANDLE</hLang>
+            </row>
+          </rowset>
+        </lpStmtT>
+        <nSqlTextCount>0</nSqlTextCount>
+        <lpSqlText>POINTER</lpSqlText>
       </row>
     </rowset>
   </instance>
