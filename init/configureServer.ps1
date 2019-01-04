@@ -12,7 +12,23 @@ function download_scripts {
 
 function install_gems {
   $env:PATH+=";C:\Program Files\Puppet Labs\Puppet\sys\ruby\bin"
+  [Environment]::SetEnvironmentVariable("PATH", $env:PATH, "Machine")
+
   Copy-Item -Path "C:\vagrant\856-psadmin-delta-scripts\init\rubyGemsCA.pem" -Destination "C:\Program Files\Puppet Labs\Puppet\sys\ruby\lib\ruby\2.1.0\rubygems\ssl_certs"
+  # $puppetGemFolder = Resolve-Path 'C:\Program Files\Puppet Labs\Puppet\sys\ruby\lib\ruby\*\rubygems\ssl_certs\'
+  $CACertFile = Join-Path -Path $ENV:AppData -ChildPath 'RubyCACert.pem'
+
+  If (-Not (Test-Path -Path $CACertFile)) {  
+    "Downloading CA Cert bundle.."
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+    Invoke-WebRequest -Uri 'https://curl.haxx.se/ca/cacert.pem' -UseBasicParsing -OutFile $CACertFile | Out-Null
+  }
+  
+  "Setting CA Certificate store set to $CACertFile.."
+  $ENV:SSL_CERT_FILE = $CACertFile
+  [System.Environment]::SetEnvironmentVariable('SSL_CERT_FILE',$CACertFile, [System.EnvironmentVariableTarget]::Machine)
+
+  "Installing Gems"
   #gem install psadmin_plus
   gem install selenium-webdriver
   gem install rspec

@@ -12,12 +12,9 @@
           * createdb
           * updatedb
           * uploaddb
-    .PARAMETER PT_VERSION
-        PeopleTools Version for Change Assistant
-    .PARAMETER PI_VERSION
-        Application and Release of the PeopleSoft Image
+          * uploadproject
     .EXAMPLE
-        configureCA.ps1 -action exportcfg -pt_version 8.56.03 -pi_version hr024
+        configureCA.ps1 -action exportcfg
 #>
 
 # Parameter help description
@@ -25,17 +22,18 @@
 Param(
   [Parameter(Mandatory=$true)][String]$ACTION         = "other",
   [Parameter()][String]$BASE                          = "c:\psft",
-  [Parameter(Mandatory=$true)][String]$PT_VERSION     = "NOTSET",
-  [Parameter(Mandatory=$true)][String]$PI_VERSION     = "NOTSET",
-  [Parameter()][String]$DATABASE                      = "HCMWIN",
+  [Parameter()][String]$PT_VERSION                    = "",
+  [Parameter()][String]$DATABASE                      = "PSFTDB",
   [Parameter()][String]$ORACLE_VERSION                = "12.1.0.2",
   [Parameter()][String]$ACCESS_ID                     = "SYSADM",
   [Parameter()][String]$ACCESS_PWD                    = "SYSADM",
   [Parameter()][String]$DB_CONNECT_ID                 = "people",
   [Parameter()][String]$DB_CONNECT_PWD                = "peop1e",
-  [Parameter()][String]$DB_USER                       = "PS",
-  [Parameter()][String]$DB_PWD                        = "PS",
-  [Parameter()][String]$CLIENT_LOCATION               ="C:\PT${PT_VERSION}_Client_ORA"
+  [Parameter()][String]$DB_USER                       = "VP1",
+  [Parameter()][String]$DB_PWD                        = "VP1",
+  [Parameter()][String]$APP                           = "",
+  [Parameter()][String]$DNS_NAME                      = "",
+  [Parameter()][String]$PROJECT                       = ""
 )
 
 # Valid values: "Stop", "Inquire", "Continue", "Suspend", "SilentlyContinue"
@@ -45,7 +43,7 @@ $VerbosePreference = "SilentlyContinue"
 
 function build_path_variables {  
     $SQLPLUS_LOCATION="${BASE}\db\oracle-server\${ORACLE_VERSION}\BIN\sqlplus.exe"
-    $CA_PATH="${BASE}\ca\${PI_VERSION}-${PT_VERSION}"
+    $CA_PATH = "C:\Program Files\PeopleSoft\Change Assistant"
     $START_LOCATION = $(Get-Location)
 }
 
@@ -59,6 +57,11 @@ function create_ca_folders {
 }
 
 function load_general_settings {
+    param (
+        [Parameter(Mandatory=$true)][String]$PT_VERSION,
+        [Parameter(Mandatory=$true)][String]$SQLPLUS_LOCATION,
+        [Parameter()][String]$CLIENT_LOCATION  = "C:\PT${PT_VERSION}_Client_ORA"
+    )
     
     Set-Location $CA_PATH
     & "${CA_PATH}\changeassistant.bat" `
@@ -78,7 +81,11 @@ function load_general_settings {
 }
 
 function define_pum_source {
-    
+    param (
+        [Parameter(Mandatory=$true)][String]$DNS_NAME,
+        [Parameter(Mandatory=$true)][String]$PT_VERSION,
+        [Parameter()][String]$CLIENT_LOCATION  = "C:\PT${PT_VERSION}_Client_ORA"
+    )
     Set-Location $CA_PATH
     & "${CA_PATH}\changeassistant.bat" `
         -MODE UM `
@@ -96,8 +103,8 @@ function define_pum_source {
         -EMYN N `
         -SRCYN Y `
         -SRCENV "${DATABASE}" `
-        -PUH "${BASE}\pt\hcm_pi_home" `
-        -PIA "http://hcmpum-win.ec2.internal:8000/ps/signon.html"
+        -PUH "${BASE}\pt\${APP}_pi_home" `
+        -PIA "http://${DNS_NAME}:8000/ps/signon.html"
 }
 
 function export_ca_config {
@@ -123,6 +130,18 @@ function import_ca_config {
 }
 
 function create_new_database {
+    param(
+        [Parameter(Mandatory=$true)][String]$DATABASE,
+        [Parameter(Mandatory=$true)][String]$ACCESS_ID,
+        [Parameter(Mandatory=$true)][String]$ACCESS_PWD,
+        [Parameter(Mandatory=$true)][String]$DB_USER,
+        [Parameter(Mandatory=$true)][String]$DB_USER_PWD,
+        [Parameter(Mandatory=$true)][String]$DB_CONNECT_ID,
+        [Parameter(Mandatory=$true)][String]$DB_CONNECT_PWD,
+        [Parameter(Mandatory=$true)][String]$PT_VERSION,
+        [Parameter()][String]$SQLPLUS_LOCATION,
+        [Parameter()][String]$CLIENT_LOCATION  = "C:\PT${PT_VERSION}_Client_ORA"
+    )
   Set-Location $CA_PATH
   & "${CA_PATH}\changeassistant.bat" `
       -MODE UM `
@@ -149,8 +168,19 @@ function create_new_database {
       -REPLACE N
 }
 
-# Stubbed for future feature
 function update_database {
+    param(
+        [Parameter(Mandatory=$true)][String]$DATABASE,
+        [Parameter(Mandatory=$true)][String]$ACCESS_ID,
+        [Parameter(Mandatory=$true)][String]$ACCESS_PWD,
+        [Parameter(Mandatory=$true)][String]$DB_USER,
+        [Parameter(Mandatory=$true)][String]$DB_USER_PWD,
+        [Parameter(Mandatory=$true)][String]$DB_CONNECT_ID,
+        [Parameter(Mandatory=$true)][String]$DB_CONNECT_PWD,
+        [Parameter(Mandatory=$true)][String]$PT_VERSION,
+        [Parameter()][String]$SQLPLUS_LOCATION,
+        [Parameter()][String]$CLIENT_LOCATION  = "C:\PT${PT_VERSION}_Client_ORA"
+    )
   Set-Location $CA_PATH
   & "${CA_PATH}\changeassistant.bat" `
       -MODE UM `
@@ -178,6 +208,9 @@ function update_database {
 }
 
 function upload_database_to_pum {
+    param(
+        [Parameter(Mandatory=$true)][String]$DATABASE
+    )
     Set-Location $CA_PATH
     & "${CA_PATH}\changeassistant.bat" `
         -MODE UM `
@@ -186,14 +219,33 @@ function upload_database_to_pum {
         -EXONERR N
 }
 
+function upload_project_to_pum {
+    param(
+        [Parameter(Mandatory=$true)]$DATABASE,
+        [Parameter(Mandatory=$true)]$PROJECT
+    )
+
+    Write-Host "Uploading ${PROJECT} from ${DATABASE} to the Update Manager" -ForegroundColor Green
+
+    Set-Location $CA_PATH
+    & "${CA_PATH}\changeassistant.bat" `
+        -MODE UM `
+        -ACTION UPLDCUSTDATA `
+        -RPSTTYPE CUST `
+        -PRJTYPE MO `
+        -PRJFROMDB ${DATABSE}:${PROJECT} `
+        -REPLACE Y `
+        -EXONERR Y
+}
+
 . build_path_variables
 . create_ca_folders
 switch ($ACTION) {
   "options" { 
-    . load_general_settings
+    . load_general_settings $PT_VERSION $SQLPLUS_LOCATION
    }
    "pumsource" { 
-    . define_pum_source
+    . define_pum_source $DNS_NAME $PT_VERSION
    }
    "exportcfg" {
     . export_ca_config
@@ -202,13 +254,16 @@ switch ($ACTION) {
      . import_ca_config
    }
    "createdb" {
-     . create_new_database
+     . create_new_database $DATABASE $ACCESS_ID $ACCESS_PWD $DB_USER $DB_USER_PWD $DB_CONNECT_ID $DB_CONNECT_PWD $PT_VERSION $SQLPLUS_LOCATION
    }
    "updatedb" {
-     . update_database
+     . update_database $DATABASE $ACCESS_ID $ACCESS_PWD $DB_USER $DB_USER_PWD $DB_CONNECT_ID $DB_CONNECT_PWD $PT_VERSION $SQLPLUS_LOCATION
    }
    "uploaddb" {
-     . upload_database_to_pum
+     . upload_database_to_pum $DATABASE
+   }
+   "uploadproject" {
+     . upload_project_to_pum $DATABASE $PROJECT
    }
   Default {
     Write-Host "-action is invalid. Valid actions are: options, exportcfg, importcfg, createdb, updatedb, uploaddb"
