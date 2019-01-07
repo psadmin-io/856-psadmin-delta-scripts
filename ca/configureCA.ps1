@@ -30,7 +30,7 @@ Param(
   [Parameter()][String]$DB_CONNECT_ID                 = "people",
   [Parameter()][String]$DB_CONNECT_PWD                = "peop1e",
   [Parameter()][String]$DB_USER                       = "VP1",
-  [Parameter()][String]$DB_PWD                        = "VP1",
+  [Parameter()][String]$DB_USER_PWD                        = "VP1",
   [Parameter()][String]$APP                           = "",
   [Parameter()][String]$DNS_NAME                      = "",
   [Parameter()][String]$PROJECT                       = ""
@@ -152,7 +152,7 @@ function create_new_database {
       -CA ${ACCESS_ID} `
       -CAP ${ACCESS_PWD} `
       -CO ${DB_USER} `
-      -CP ${DB_PWD} `
+      -CP ${DB_USER_PWD} `
       -CI ${DB_CONNECT_ID} `
       -CW ${DB_CONNECT_PWD} `
       -CZYN N `
